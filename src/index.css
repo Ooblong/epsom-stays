@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-bone font-sans text-ink antialiased; font-size: 16px; line-height: 1.5; }
+  h1, h2, h3 { @apply font-display; font-weight: 500; letter-spacing: -0.03em; }
+  :focus-visible { outline: 2px solid #0E5B4A; outline-offset: 3px; border-radius: 4px; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full px-5 sm:px-10 xl:px-14; max-width: clamp(1280px, 92vw, 1520px); }
+  .eyebrow { @apply font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-stone; }
+
+  /* Buttons — pill with ink fill that slides in on hover (from the reference) */
+  .btn { @apply relative isolate inline-flex h-[46px] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full px-[22px] text-sm font-semibold transition-[scale,background-color,color] duration-200 active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn::before { content: ''; position: absolute; z-index: -1; inset: 0; border-radius: inherit; transform: translateX(-102%); transition: transform .5s cubic-bezier(.3,.9,.2,1); }
+  .btn:hover::before, .btn:focus-visible::before { transform: none; }
+  .btn svg { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .btn:hover svg { transform: translateX(4px); }
+  .btn-dark { @apply bg-moss text-white; }
+  .btn-dark::before { @apply bg-ink; }
+  .btn-light { @apply bg-white text-ink; }
+  .btn-light::before { @apply bg-ink; }
+  .btn-light:hover { @apply text-white; }
+  .btn-ghost { @apply bg-transparent; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, currentColor 26%, transparent); }
+  .btn-ghost:hover { box-shadow: inset 0 0 0 1.5px currentColor; }
+  .btn-sage { @apply bg-sage-deep text-white; }
+  .btn-sage::before { @apply bg-moss; }
+
+  /* Chips — the soft rounded selectors used in the hero quote bar */
+  .chip { @apply inline-flex h-[46px] items-center gap-2 whitespace-nowrap rounded-full pl-[18px] pr-[14px] text-[14.5px] font-medium text-ink transition-[background-color,scale] duration-200 active:scale-[.96]; background: color-mix(in srgb, #F4F0E8 82%, #fff); }
+  .chip:hover { background: color-mix(in srgb, #0E5B4A 14%, #fff); }
+  .chip svg { opacity: .55; transition: opacity .25s, transform .35s cubic-bezier(.2,.8,.2,1); }
+  .chip:hover svg { opacity: 1; transform: translateY(-1px); }
+
+  .field { @apply w-full min-w-0 rounded-xl border border-ink/15 bg-white/70 px-4 py-3 text-sm outline-none transition focus:border-moss focus:bg-white focus:ring-2 focus:ring-moss/20; }
+  .field-error { @apply border-red-700/60; }
+  .label { @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-ink/60; }
+}
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* Hero entrance: words rise out of a mask, then supporting pieces fade up */
+.mask-w { display: inline-block; overflow: hidden; vertical-align: top; padding: .08em .04em .16em; margin: -.08em -.04em -.16em; }
+.mask-wi { display: inline-block; transition: transform 1.1s cubic-bezier(.16,.84,.24,1), opacity .6s; transition-delay: var(--d, 0ms); }
+.hero-wait .mask-wi { transform: translateY(108%); opacity: 0; }
+.hero-up { transition: opacity .8s, translate .9s cubic-bezier(.16,.84,.24,1); transition-delay: var(--d, 0ms); }
+.hero-wait .hero-up { opacity: 0; translate: 0 18px; }
+
+.pulse-dot { box-shadow: 0 0 0 0 rgba(47,191,138,.6); animation: pulse 2.2s ease-out infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(47,191,138,0); } 100% { box-shadow: 0 0 0 0 rgba(47,191,138,0); } }
+
+.roll { display: inline-block; animation: roll .55s cubic-bezier(.2,.8,.2,1); }
+@keyframes roll { from { transform: translateY(90%); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Photo "veil": a bone-coloured sheet wipes off the image to the right (from the reference) */
+.veil::after { content: ''; position: absolute; z-index: 2; inset: 0 -18% 0 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(244,240,232,.94) 0, rgba(244,240,232,.94) 82%, rgba(244,240,232,0) 100%);
+  animation: veil .85s cubic-bezier(.5,0,.2,1) both; }
+@keyframes veil { from { transform: translateX(-18%); } to { transform: translateX(100%); } }
+.rise { animation: rise .5s cubic-bezier(.2,.8,.2,1); }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Rating bars grow in from zero once revealed */
+.reveal.in .bar-grow { animation: bar-grow 1s cubic-bezier(.2,.8,.2,1) var(--d, 0ms) both; }
+@keyframes bar-grow { from { transform: scaleX(0); } }
+
+/* Dropdown menus pop open from the trigger */
+.menu-pop { animation: menu-pop .18s cubic-bezier(.2,.8,.2,1); }
+@keyframes menu-pop { from { opacity: 0; transform: translateY(4px) scale(.97); } to { opacity: 1; transform: none; } }
+
+.marquee { animation: marquee 38s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .hero-wait .mask-wi, .hero-wait .hero-up { opacity: 1; transform: none; translate: none; transition: none; }
+  .marquee, .pulse-dot, .roll, .menu-pop, .rise { animation: none; }
+  .veil::after { display: none; }
+}

@@ -1,0 +1,22 @@
+/* ── Launch loader (shown before React boots) ── */
+#ld { position: fixed; inset: 0; z-index: 10000; color: #14201C; font: 500 12px/1.5 Figtree, system-ui, sans-serif; letter-spacing: .12em; }
+#ld.done { display: none; }
+#ld .ld-wipe { position: absolute; inset: 0; background: #F4F0E8; transform-origin: 100% 50%; will-change: transform; }
+#ld .ld-blade { position: absolute; inset: 0; pointer-events: none; visibility: hidden; will-change: transform; }
+#ld .ld-blade i { position: absolute; top: 0; bottom: 0; left: -3px; width: 3px; background: #0E5B4A; }
+#ld.lift { pointer-events: none; }
+#ld.lift .ld-wipe { animation: ld-open .6s cubic-bezier(.65,0,.25,1) both; }
+#ld.lift .ld-blade { visibility: visible; animation: ld-run .6s cubic-bezier(.65,0,.25,1) both; }
+#ld.lift .ld-mid, #ld.lift .ld-skip { opacity: 0; transition-duration: .12s; }
+@keyframes ld-open { to { transform: scaleX(0); } }
+@keyframes ld-run { to { transform: translate3d(calc(100% + 6px),0,0); } }
+#ld .ld-mid { position: absolute; left: 50%; top: 50%; width: min(420px, calc(100% - 48px)); translate: -50% -50%; display: grid; gap: 16px; transition: opacity .2s; }
+#ld .ld-name { margin: 0; font: 400 clamp(40px, 11vw, 60px)/1 Fraunces, Georgia, serif; letter-spacing: -.04em; white-space: nowrap; }
+#ld .ld-name i { font-style: normal; color: #0E5B4A; }
+#ld .ld-line { display: flex; justify-content: space-between; gap: 16px; margin: 0; text-transform: uppercase; color: #56625D; }
+#ld .ld-line b { font-weight: 500; color: #14201C; font-variant-numeric: tabular-nums; }
+#ld .ld-bar { position: relative; height: 1px; background: rgba(20,32,28,.14); }
+#ld .ld-bar i { position: absolute; inset: -.5px 0 auto; height: 2px; background: #0E5B4A; transform: scaleX(0); transform-origin: 0 50%; }
+#ld .ld-skip { position: absolute; right: clamp(16px,4vw,56px); bottom: clamp(16px,4vw,40px); min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #fff; color: #14201C; font: inherit; text-transform: uppercase; cursor: pointer; box-shadow: 0 6px 20px rgba(20,32,28,.1); transition: background-color .25s, color .25s, opacity .2s; }
+#ld .ld-skip:hover { background: #0E5B4A; color: #fff; }
+html.ld-on { overflow: hidden; }

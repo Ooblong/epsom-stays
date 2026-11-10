@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Epsom Stays | Boutique short-term rentals in Epsom, Surrey</title>
+    <meta name="description" content="Beautifully maintained homes with hotel-style comforts in central Epsom, Surrey. Plus Pure Living Cleaning Company." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Figtree:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/images/hero-living-room.webp" />
+    <!-- Launch loader styles/script live in /public so they run before the app bundle -->
+    <link rel="stylesheet" href="/loader.css" />
+  </head>
+  <body>
+    <!-- NOTE: brand name below is the temporary placeholder; keep in sync with src/data/site.ts -->
+    <div id="ld" role="status" aria-label="Loading Epsom Stays">
+      <div class="ld-wipe"></div>
+      <div class="ld-blade"><i></i></div>
+      <div class="ld-mid">
+        <p class="ld-name">Epsom Stays<i>.</i></p>
+        <p class="ld-line"><span>Preparing your stay</span><b id="ld-pct">0%</b></p>
+        <div class="ld-bar"><i id="ld-bar"></i></div>
+      </div>
+      <button class="ld-skip" type="button" id="ld-skip">Skip</button>
+    </div>
+    <script src="/loader.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

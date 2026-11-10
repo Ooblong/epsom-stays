@@ -1,0 +1,10 @@
+node_modules
+dist
+*.tsbuildinfo
+.claude
+.impeccable
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*

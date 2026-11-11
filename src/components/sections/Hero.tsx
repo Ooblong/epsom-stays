@@ -8,8 +8,8 @@ import { Arrow } from '../ui'
 
 // Headline split into lines → words so each word can rise out of its own mask.
 const LINES: { w: string; em?: boolean }[][] = [
+  [{ w: 'Come' }, { w: 'home' }, { w: 'to' }, { w: 'spotless.', em: true }],
   [{ w: 'Come' }, { w: 'home' }, { w: 'to' }, { w: 'stay.', em: true }],
-  [{ w: 'Come' }, { w: 'home' }, { w: 'to' }, { w: 'clean.', em: true }],
 ]
 
 export function Hero() {
@@ -117,7 +117,7 @@ export function Hero() {
 
             <div className="hero-up mt-7 flex flex-wrap gap-3" style={{ ['--d' as string]: '520ms' }}>
               <Link to="/#properties" className="btn btn-dark">Explore Our Stays <Arrow /></Link>
-              <Link to="/#cleaning" className="btn btn-ghost bg-white/60 text-ink backdrop-blur">Our Cleaning Services</Link>
+              <Link to="/#cleaning" className="btn btn-ghost bg-white/60 text-ink backdrop-blur">Book a Cleaning</Link>
             </div>
           </div>
         </div>
